@@ -35,7 +35,12 @@ export default class GameScene extends Phaser.Scene
 		let y = 100;
 		for(let i = 0; i < 5; i++) {
 			for(let j = 0; j < 5; j++) {
-				new CardGraphic(this, j*(5+100)+x, i*(5+100)+y)
+				const card = new CardGraphic(this, j*(5+100)+x, i*(5+100)+y);
+				card.setInteractive();
+				card.on('pointerdown', function() {
+					card.card.flipped = true;
+					card.draw();
+				})
 			}
 		}
 		// new CardGraphic(this, 100, 100);
